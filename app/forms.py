@@ -71,4 +71,24 @@ class DailyForm(FlaskForm):
     propane = IntegerField("Dollars", validators=[DataRequired()], default=0)
 
     submit = SubmitField('Enter Info')
+
+class ReductionForm(FlaskForm):
+    up = IntegerField("input degrees", validators=[DataRequired()], default=0)
+    down = IntegerField("input degrees", validators=[DataRequired()], default=0)
+    light =IntegerField("input lights", validators=[DataRequired()], default=0)
+    power = BooleanField("Will enable features")
+    green = IntegerField("input percent", validators=[DataRequired()], default=0)
+    wash = IntegerField("input loads", validators=[DataRequired()], default=0)
+    dry = IntegerField("input percent", validators=[DataRequired()], default=0)
+    fridge = BooleanField("Will replace")
+    furnace = BooleanField("Will replace")
+    windows = BooleanField("Will replace")
+    main = BooleanField("Will maintain")
+    gcar = IntegerField("number miles", validators=[DataRequired()], default=0)
+    ecar = IntegerField("number miles", validators=[DataRequired()], default=0)
+    bus = IntegerField("umber miles", validators=[DataRequired()], default=0)
+    train = IntegerField("number miles", validators=[DataRequired()], default=0)
+    plane = IntegerField("number miles", validators=[DataRequired()], default=0)
+    submit = SubmitField('Enter Info')
+  
     

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post">
+    <h2>Reduce Home Energy Use</h2>
+
+        <table style="width:100%">
+        <tr>
+            <th>Heating & Cooling</th>
+        </tr>
+        <tr>
+            <td>Turn up A/C thermostat in summer by (# of degrees F):</td>
+            <td>{{ form.up }}</td>
+        </tr>
+        <tr>
+            <td>Turn down heating thermostat on winter nights by (# of degrees F):</td>
+            <td><h2>{{ form.down }}</h2></td>
+        </tr>
+            
+        <tr>
+            <th>Lighting</th>
+        </tr>
+        <tr>
+            <td>Replace incandescent light bulbs with ENERGY STAR lights (# of lightbulbs):</td>
+            <td>{{ form.light }}</td>
+        </tr>
+        <tr>
+            <th>Power Source & Settings</th>
+        </tr>
+        <tr>
+            <td>Enable the power management features on your computer</td>
+            <td>{{ form.power }}</td>
+        </tr>
+        <tr>
+            <td>Increase your household Green Power usage by (% energy):</td>
+            <td>{{ form.green }}</td>
+        </tr>   
+        <tr>
+            <th>Washing & Drying</th>
+        </tr>
+        <tr>
+            <td>Wash your clothes in cold water (# of loads):</td>
+            <td>{{ form.wash }}</td>
+        </tr>   
+        <tr>
+            <td>Use clothes line or drying rack instead of dryer (% clothes):</td>
+            <td>{{ form.dry }}</td>
+        </tr>
+        <tr>
+            <th>ENERGY STAR Products: replace the following products with ENERGY STAR models:</th>
+        </tr>
+        <tr>
+            <td>Refrigeration</td>
+            <td>{{ form.fridge }}</td>   
+        </tr>
+        
+        <tr>
+            <td>Furnace or boiler</td>
+            <td>{{ form.furnace }}</td>
+        </tr>
+        <tr>
+            <td>Windows</td>
+            <td>{{ form.windows }}</td>
+        </tr>
+
+        </table>
+
+        <h2>Reduce Transportation Footprint</h2>
+        <table style="width:100%">
+        <tr>
+            <th>Car</th>
+        </tr>
+        <tr>
+            <td>Perform regular maintenance</td>
+            <td>{{form.main}}</td>
+        </tr>
+        <tr>
+            <th>Reduce miles traveled by:</th>
+        </tr>
+        <tr>
+            <td>Gasoline Car (# miles/week):</td>
+            <td>{{ form.gcar }}</td>
+        </tr>
+        <tr>
+            <td>Electric Car(# miles/week):</td>
+            <td>{{ form.ecar }}</td>
+        </tr>
+        <tr>
+            <td>Bus(# miles/week):</td>
+            <td>{{ form.bus }}</td>
+        </tr>
+        <tr>
+            <td>Train (# miles/week):</td>
+            <td>{{form.train}}</td>
+        <tr>
+            <td>Plane (# miles/week):</td>
+            <td>{{ form.plane }}</td>
+        </tr>
+        </table>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+
+{% endblock %}

@@ -3,12 +3,12 @@ from app import app
 from app.forms import LoginForm
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user
-from app.models import User, UserInfo
+from app.models import User, UserInfo, Reduction
 from flask_login import logout_user
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
-from app.forms import RegistrationForm, DailyForm
+from app.forms import RegistrationForm, DailyForm, ReductionForm
 from flask_login import login_required
 
 @app.route('/')
@@ -112,12 +112,11 @@ def Daily(username):
         week  = int(form.week.data)
 
         ##calc home energy ##
-        enCoeff={"gas":2.8, "elec":1.3, "fuel":67/3, "propane":60/3}
+        enCoeff={"gas":2.8, "elec":1.29, "fuel":1.41, "propane":1.26}
         enTotal = enCoeff["gas"] * gas + enCoeff["elec"] * electricity + enCoeff["fuel"]*fuel + enCoeff["propane"] * propane
-        enTotal //= 4
 
         ##calc Transport ##
-        transCo = {"gcar":1.05, "ecar":2.48, "train":(1/3), "plane":0.5}
+        transCo = {"gcar":1.05, "ecar":0.66, "train":(1/3), "plane":0.5}
         transTotal = int(transCo["gcar"]*gcar + transCo["ecar"]*ecar + transCo["train"]*train + transCo["plane"]*plane)
 
         #food calc##
@@ -136,7 +135,7 @@ def Daily(username):
         for i in range(len(foodList)):
             foodOut += foodDict[foodName[i]] * foodList[i]
 
-        foodOut = int(foodOut)
+        foodOut = int(foodOut)//2
         out = foodOut + transTotal + enTotal
         #bf1=bf1, bf2=bf2, bf3=bf3,lf1=lf1,lf2=lf2,df1=df1, df2=df2, df3=df3, transport=tn1,distance=ta1, enSource=et1, enAmt=ea1,
         info = UserInfo(berry=berry, avocado=avocado, tomato=tomato, banana=banana, apple=apple, 
@@ -160,17 +159,55 @@ def Analysis(username):
     data = data[-1]
     label = ["Food Total", "Energy Total", "Transport Total"]
     values = [data.foodOut, data.enOut, data.transOut]
-    enCoeff={"gas":134/3, "elec":62/3, "fuel":67/3, "propane":60/3}
+    enCoeff={"gas":2.8, "elec":1.29, "fuel":1.41, "propane":1.26}
+
+
     
     colors = [ "#F7464A", "#46BFBD", "#FDB45C"]
     enAvg = [201.5, 155, 1212//3, 561//3]
     transAvg = [265]
     foodAvg = [250]
-    natAvg = [768//3, 1364//3, 1212//3, 561//3, 265, 250]
+    natAvg = [64.37, 56.79, 101.229, 46.54, 98.37, 125]
     avgVal = [data.gas * enCoeff["gas"], data.electricity * enCoeff["elec"], data.fuel * enCoeff["fuel"], data.propane * enCoeff["propane"], data.transOut, data.foodOut]
     avgLabel = ["Gas", "Electricity", "Fuel Oil", "Propane", "Transport", "Food"]
     #print(labels, values,colors)
     return render_template('analysis.html', week = data.week, avglabel = avgLabel, natAvg = natAvg, avgVal=avgVal, values=values, label=label, colors=colors)
     #return render_template('analysis.html', title='Your Daily Info', data=data)
 
+@app.route('/Reduction/<username>', methods=['GET', 'POST'])
+@login_required
+def Reduction(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    form = ReductionForm()
+    if request.method == "POST":
+        up = int(form.up.data) * 52
+        down = int(form.down.data) * 25
+        light =int(form.light.data) * 20
+        power = int(form.power.data) * 66
+        green = int(form.green.data) * 6
+        wash =int(form.wash.data) * 31
+        dry = int(form.dry.data) * 5
+        fridge = int(form.fridge.data) * 197
+        furnace =  int(form.furnace.data) * 728
+        windows = int(form.windows.data) * 2947
+        main = int(int(form.main.data) * 0.04)
+        gcar = int(int(form.gcar.data) * 0.89)
+        ecar = int(int(form.ecar.data) * 0.107)
+        bus = int(int(form.bus.data) * 0.112)
+        train = int(int(form.train.data) * 0.34)
+        plane = int(int(form.plane.data) * 0.472)
+        print(Reduction)
+        print(up)
+        return render_template('reduceResult.html', title='Reduction Results', up=up, down=down, light=light, power=power,green=green,wash=wash,dry=dry,fridge=fridge,furnace=furnace,
+        windows=windows,main=main, gcar=gcar, ecar=ecar,bus=bus,train=train,plane=plane)
+        db.session.add(info)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('reductForm.html', title='Fill In Your Reduction Info', form=form)
 
+@app.route('/RedResults')
+def redResults():
+    user = User.query.filter_by(username=username).first_or_404()
+    data = Reduction.query.filter_by(user=current_user.username)
+    data = data[-1]
+    return render_template('reduceResult.html', title='Reduction Results', info=data)

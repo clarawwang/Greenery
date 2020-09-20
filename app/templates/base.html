@@ -15,6 +15,7 @@
             {% else %}
             <a href="{{ url_for('Daily', username=current_user.username) }}">Weekly Form</a>
             <a href="{{ url_for('Analysis', username=current_user.username) }}">Weekly Analysis</a>
+            <a href="{{ url_for('Reduction', username=current_user.username) }}">Reduction Form</a>
             <a href="{{ url_for('logout') }}">Logout</a>
             
             {% endif %}

@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     info = db.relationship('UserInfo', backref='author', lazy='dynamic')
+    reduce =db.relationship('Reduction', backref='author', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -81,6 +82,31 @@ class UserInfo(db.Model):
 
     def __repr__(self):
         return '<Usage Today {}>'.format(self.totalOut)
+
+class Reduction(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.Column(db.String(100))
+    up = db.Column(db.Integer)
+    down = db.Column(db.Integer)
+    light =db.Column(db.Integer)
+    power = db.Column(db.Integer)
+    green = db.Column(db.Integer)
+    wash =db.Column(db.Integer)
+    dry = db.Column(db.Integer)
+    fridge = db.Column(db.Integer)
+    furnace = db.Column(db.Integer)
+    windows = db.Column(db.Integer)
+    main = db.Column(db.Integer)
+    gcar = db.Column(db.Integer)
+    ecar = db.Column(db.Integer)
+    bus = db.Column(db.Integer)
+    train = db.Column(db.Integer)
+    plane = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Usage Today {}>'.format(self.up)
+    
 
 @login.user_loader
 def load_user(id):

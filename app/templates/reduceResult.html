@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Reduce Home Energy Use</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Heating & Cooling</th>
+  </tr>
+  <tr>
+    <td>Turn up A/C thermostat in summer by:</td>
+    <td>Annual Reduction:</td>
+    <td>{{ up}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Turn down heating thermostat on winter nights by:</td>
+    <td>Annual Reduction:</td>
+    <td>{{ down}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <th>Lighting</th>
+  </tr>
+  <tr>
+    <td>Replace incandescent light bulbs with ENERGY STAR lights:</td>
+    <td>Annual Reduction:</td>
+    <td>{{ light}} lbs CO2</td>
+  </tr>
+  
+   <tr>
+    <th>Power Source & Settings</th>
+  </tr>
+  <tr>
+    <td>Enable the power management features on your computer</td>
+    <td>Annual Reduction:</td>
+    <td>{{ power}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Increase your household Green Power usage by:</td>
+    <td>Annual Reduction:</td>
+    <td>{{ green}}lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <th>Washing & Drying</th>
+  </tr>
+  <tr>
+    <td>Wash your clothes in cold water:</td>
+    <td>Annual Reduction:</td>
+    <td>{{ wash}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Use clothes line or drying rack instead of dryer:</td>
+    <td>Annual Reduction:</td>
+    <td>{{ dry}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <th>ENERGY STAR Products: replace the following products with ENERGY STAR models:</th>
+  </tr>
+  <tr>
+    <td>Refrigeration</td>
+    <td>Annual Reduction:</td>
+    <td>{{ fridge}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Furnace or boiler</td>
+    <td>Annual Reduction:</td>
+    <td>{{ furnace}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Windows</td>
+    <td>Annual Reduction:</td>
+    <td>{{ windows}} lbs CO2</td>
+  </tr>
+  
+</table>
+
+<h2>Reduce Transportation Footprint</h2>
+<table style="width:100%">
+  <tr>
+    <th>Car</th>
+  </tr>
+  <tr>
+    <td>Perform regular maintenance</td>
+    <td>Weekly Reduction:</td>
+    <td>{{ main}}lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <th>Reduce miles traveled by:</th>
+  </tr>
+  <tr>
+    <td>Gasoline Car:</td>
+    <td>Weekly Reduction:</td>
+    <td>{{ gcar}} lbs CO2</td>
+  </tr>
+
+  <tr>
+    <td>Electric Car:</td>
+    <td>Weekly Reduction:</td>
+    <td>{{ ecar}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Bus:</td>
+    <td>Weekly Reduction:</td>
+    <td>{{ bus}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Train:</td>
+    <td>Weekly Reduction:</td>
+    <td>{{ train}} lbs CO2</td>
+  </tr>
+  
+  <tr>
+    <td>Plane:</td>
+    <td>Weekly Reduction:</td>
+    <td>{{ plane}} lbs CO2</td>
+  </tr>
+  
+</table>
+
+{% endblock %}
