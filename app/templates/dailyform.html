@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Weekly Information</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <h2>Please fill in this form with weekly info!</h2>
+        <p>
+            {{ form.week.label }}<br>
+            {{ form.week }}<br>
+        </p>
+        <h2>Food Consumed</h2>
+        <h3>Please enter the number servings you ate of each food this week. </h3>
+        <h3>If there are foods you ate that aren't listed, please use the closest alternative!</h3>
+        <table style="width:100%">
+            <tr>
+              <th>Fruits & Veggies</th>
+              <th></th>
+              <th>Proteins</th> 
+              <th></th>
+              <th>Starches</th>
+              <th></th>
+              <th>Beverages</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>Apples</td>
+              <td>{{ form.apple }}</td>
+              <td>Beef</td>
+              <td>{{ form.beef }}</td>
+              <td>Rice</td>
+              <td>{{ form.rice }}</td>
+              <td>Dairy Milk</td>
+              <td>{{ form.milk }}</td>
+            </tr>
+            <tr>
+              <td>Bananas</td>
+              <td>{{ form.banana }}</td>
+               <td>Lamb</td>
+              <td>{{ form.lamb }}</td>
+              <td>Pasta</td>
+              <td>{{ form.pasta }}</td>
+              <td>Plant-based Milk</td>
+              <td>{{ form.pl_milk }}</td>
+            </tr>
+            <tr>
+              <td>Citrus Fruit</td>
+              <td>{{ form.citrus }}</td>
+              <td>Farmed prawns</td>
+              <td>{{ form.prawn }}</td>
+              <td>Oatmeal</td>
+              <td>{{ form.oat }}</td>
+              <td>Beer</td>
+              <td>{{ form.beer }}</td>
+            </tr>
+             <tr>
+              <td>Berries/Grapes</td>
+              <td>{{ form.berry }}</td>
+              <td>Farmed fish</td>
+              <td>{{ form.fish }}</td>
+              <td>Bread</td>
+              <td>{{ form.bread }}</td>
+              <td>Coffee</td>
+              <td>{{ form.coffee }}</td>
+            </tr>
+            <tr>
+              <td>Avocados</td>
+              <td>{{ form.avocado }}</td>
+              <td>Pork</td>
+              <td>{{ form.pork }}</td>
+              <td>Potatoes</td>
+              <td>{{ form.potatp }}</td>
+              <td>Wine</td>
+              <td>{{ form.wine }}</td>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Chicken</td>
+              <td>{{ form.chicken }}</td>
+              <td></td>
+              <td></td>
+              <td>Tea</td>
+              <td>{{ form.tea }}</td>
+            </tr>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Cheese</td>
+              <td>{{ form.cheese }}</td>
+            </tr>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Eggs</td>
+              <td>{{ form.egg }}</td>
+            </tr>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Tofu</td>
+              <td>{{ form.tofu }}</td>
+            </tr>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Beans</td>
+              <td>{{ form.bean }}</td>
+            </tr>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Peas</td>
+              <td>{{ form.pea }}</td>
+            </tr>
+            </tr>
+              <tr>
+              <td></td>
+              <td></td>
+              <td>Nuts</td>
+              <td>{{ form.nut }}</td>
+            </tr>
+          </table>
+
+        <h2>Home Energy Usage</h2>
+        <h3>Please enter the approximate dollar amount you spent on each type of energy this week!</h3>
+            <table style="width:100%">
+                <tr>
+                <th>Natural Gas</th>
+                <th>Electricity</th> 
+                <th>Fuel Oil</th>
+                <th>Propane</th>
+                </tr>
+                <tr>
+                <td>{{ form.gas }}</td>
+                <td>{{ form.electricity }}</td>
+                <td>{{ form.fuel }}</td>
+                <td>{{ form.propane }}</td>
+                </tr>
+            </table>
+
+        <h2>Transportation</h2>
+        <h3>Please enter the number of miles you traveled in each type of transportation this week!</h3>
+            <table style="width:100%">
+            <tr>
+                <th>Gasoline Car</th>
+                <th>Electric Car</th>
+                <th>Bus</th>
+                <th>Train</th>
+                <th>Plane</th>
+            </tr>
+            <tr>
+                <td>{{ form.gcar }}</td>
+                <td>{{ form.ecar }}</td>
+                <td>{{ form.bus }}</td>
+                <td>{{ form.train }}</td>
+                <td>{{ form.plane }}</td>
+            </tr>
+            </table>
+        
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

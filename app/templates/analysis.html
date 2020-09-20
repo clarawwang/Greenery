@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %} 
+    <h1>Weekly Analytics</h1>
+    <h2>Your Week {{ week }} Breakdown</h2>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <canvas id="pie-chart" width="1000" height="400"></canvas>
+    <script>
+    var label = {{label|tojson}};
+
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'doughnut',
+        data: {
+            labels: label,
+            datasets: [{
+                label: "lbs CO2 Used",
+                backgroundColor: {{colors|tojson}},
+                data: {{values|tojson}}
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'lbs of CO2 Usage by category'
+            }
+        }
+    });
+    </script>
+    <h2>Comparison to National Average</h2>
+    <canvas id="bar-chart-grouped" width="1000" height="450"></canvas>
+    <script>
+        new Chart(document.getElementById("bar-chart-grouped"), {
+            type: 'bar',
+            data: {
+            labels: {{ avglabel|tojson }},
+            datasets: [
+                {
+                label: "Your Data",
+                backgroundColor: "#3e95cd",
+                data: {{ avgVal|tojson }}
+                }, {
+                label: "National Avg",
+                backgroundColor: "#8e5ea2",
+                data: {{ natAvg|tojson }}
+                }
+            ]
+            },
+            options: {
+            title: {
+                display: true,
+                text: 'Resource Use Comparison to National Average'
+            }
+            }
+        });
+        </script>
+
+{% endblock %}
